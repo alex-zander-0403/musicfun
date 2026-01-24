@@ -9,6 +9,8 @@ function App() {
   const [selectedTrackId, setSelectedTrackId] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
 
+  const isLoading = selectedTrackId && !selectedTrack;
+
   const getTrackDetails = (trackId) => {
     fetch(`${BASE_URL}/playlists/tracks/${trackId}`, {
       headers: {
@@ -81,9 +83,28 @@ function App() {
         {/* детали */}
         <div>
           <h3>Details</h3>
-          {selectedTrack === null ? (
-            "Трек не выбран"
-          ) : (
+
+          {!selectedTrackId && !selectedTrack && (
+            <div>
+              <p>Трек не выбран</p>
+            </div>
+          )}
+
+          {selectedTrackId && !selectedTrack && (
+            <div>
+              <p>Загрузка...</p>
+            </div>
+          )}
+
+          {selectedTrackId &&
+            selectedTrack &&
+            selectedTrackId !== selectedTrack.id && (
+              <div>
+                <p>Загрузка 2...</p>
+              </div>
+            )}
+
+          {selectedTrack && (
             <div>
               <h3>{selectedTrack.attributes.title}</h3>
               <p>{selectedTrack.attributes.lyrics ?? "Нет текста"}</p>
