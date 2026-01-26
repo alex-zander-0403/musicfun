@@ -1,10 +1,15 @@
+import { useEffect } from "react";
+import { BASE_URL } from "../../App";
+
 export function TrackDetail(props) {
   //
-  const { selectedTrack, selectedTrackId } = props;
+  const { selectedTrack, setSelectedTrack, selectedTrackId } = props;
 
-  // загрузка по изменению selectedTrackId
+  // загрузка деталей по изменению selectedTrackId
   useEffect(() => {
-    if (!selectedTrackId) return;
+    if (!selectedTrackId) {
+      return <div>Трек не выбран</div>;
+    }
 
     fetch(`${BASE_URL}/playlists/tracks/${selectedTrackId}`, {
       headers: {
