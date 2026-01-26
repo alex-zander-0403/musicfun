@@ -9,17 +9,9 @@ function App() {
   const [selectedTrackId, setSelectedTrackId] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
 
-  const isLoading = selectedTrackId && !selectedTrack;
+  console.log("tracks", tracks);
 
-  const getTrackDetails = (trackId) => {
-    fetch(`${BASE_URL}/playlists/tracks/${trackId}`, {
-      headers: {
-        "api-key": "16edba78-eeed-43ce-bc33-f0538130b694",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setSelectedTrack(data.data));
-  };
+  // const isLoading = selectedTrackId && !selectedTrack;
 
   //
   useEffect(() => {
@@ -29,11 +21,25 @@ function App() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setTracks(data.data));
+      .then((data) => {
+        setTracks(data.data);
+      });
   }, []);
 
+  useEffect(() => {
+    if (!selectedTrackId) return;
+
+    fetch(`${BASE_URL}/playlists/tracks/${selectedTrackId}`, {
+      headers: {
+        "api-key": "16edba78-eeed-43ce-bc33-f0538130b694",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setSelectedTrack(data.data));
+  }, [selectedTrackId]);
+
   if (tracks === null) {
-    return <div>loading...</div>;
+    return <div>loading... (tracks === null)</div>;
   }
 
   if (tracks.length === 0) {
@@ -66,7 +72,6 @@ function App() {
                 <div
                   onClick={() => {
                     setSelectedTrackId(track.id);
-                    getTrackDetails(track.id);
                   }}
                 >
                   {track.attributes.title}
