@@ -9,10 +9,6 @@ function App() {
   const [selectedTrackId, setSelectedTrackId] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
 
-  console.log("tracks", tracks);
-
-  // const isLoading = selectedTrackId && !selectedTrack;
-
   //
   useEffect(() => {
     fetch(`${BASE_URL}/playlists/tracks`, {
@@ -43,7 +39,7 @@ function App() {
   }
 
   if (tracks.length === 0) {
-    return <div>No tracks</div>;
+    return <div>No tracks... (tracks.length === 0)</div>;
   }
 
   return (
