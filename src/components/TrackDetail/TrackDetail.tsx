@@ -7,9 +7,7 @@ export function TrackDetail(props) {
 
   // загрузка деталей по изменению selectedTrackId
   useEffect(() => {
-    if (!selectedTrackId) {
-      return <div>Трек не выбран</div>;
-    }
+    if (!selectedTrackId) return;
 
     fetch(`${BASE_URL}/playlists/tracks/${selectedTrackId}`, {
       headers: {
@@ -25,6 +23,12 @@ export function TrackDetail(props) {
     <div>
       <h3>Details</h3>
 
+      {/* {!selectedTrackId && (
+        <div>
+          <p>Трек не выбран</p>
+        </div>
+      )} */}
+
       {!selectedTrackId && !selectedTrack && (
         <div>
           <p>Трек не выбран</p>
@@ -33,7 +37,7 @@ export function TrackDetail(props) {
 
       {selectedTrackId && !selectedTrack && (
         <div>
-          <p>Загрузка 1 ...</p>
+          <p>Загрузка 1...</p>
         </div>
       )}
 
@@ -41,7 +45,7 @@ export function TrackDetail(props) {
         selectedTrack &&
         selectedTrackId !== selectedTrack.id && (
           <div>
-            <p>Загрузка 2 ...</p>
+            <p>Загрузка 2... смена трека</p>
           </div>
         )}
 

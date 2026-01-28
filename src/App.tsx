@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { TrackList } from "./components/TrackList/TrackList.jsx"; // предполагаемые пути
-import { TrackDetail } from "./components/TrackDetail/TrackDetail.jsx"; // предполагаемые пути
+import { TrackList } from "./components/TrackList/TrackList.js"; // предполагаемые пути
+import { TrackDetail } from "./components/TrackDetail/TrackDetail.js"; // предполагаемые пути
 // import { data } from "../mockData/mockTracks.json";
 
 export const BASE_URL = "https://musicfun.it-incubator.app/api/1.0";
@@ -49,6 +49,7 @@ export function App() {
 
         {/* детали */}
         <TrackDetail
+          selectedTrack={selectedTrack}
           setSelectedTrack={setSelectedTrack}
           selectedTrackId={selectedTrackId}
         />
