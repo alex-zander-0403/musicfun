@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/main.tsx","./src/components/TrackDetail/TrackDetail.tsx","./src/components/TrackItem/TrackItem.tsx","./src/components/TrackList/TrackList.tsx"],"errors":true,"version":"5.9.3"}
+{"root":["./src/App.tsx","./src/main.tsx","./src/components/TrackDetail/TrackDetail.tsx","./src/components/TrackItem/TrackItem.tsx","./src/components/TrackList/TrackList.tsx"],"version":"5.9.3"}

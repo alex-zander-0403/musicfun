@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TrackList } from "./components/TrackList/TrackList.js"; // предполагаемые пути
-import { TrackDetail } from "./components/TrackDetail/TrackDetail.js"; // предполагаемые пути
+import { TrackList } from "./components/TrackList/TrackList.js";
+import { TrackDetail } from "./components/TrackDetail/TrackDetail.js";
 // import { data } from "../mockData/mockTracks.json";
 
 export const BASE_URL = "https://musicfun.it-incubator.app/api/1.0";
@@ -10,7 +10,7 @@ export function App() {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
 
   // выбор трека по клику
-  const handleSelect = (trackId: string | null) => {
+  const handleSelect = (trackId: string | null): void => {
     setSelectedTrackId(trackId);
   };
 

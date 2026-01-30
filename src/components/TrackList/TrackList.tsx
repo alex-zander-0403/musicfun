@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { TrackItem } from "../TrackItem/TrackItem";
+import { TrackItem, type TrackListItemResource } from "../TrackItem/TrackItem";
 import { BASE_URL } from "../../App";
 
-type TrackListResource = {
-  id: string;
+type PropsType = {
+  selectedTrackId: string | null;
+  onTrackSelect: (trackId: string | null) => void;
 };
 
 //
-export function TrackList(props) {
+export function TrackList(props: PropsType) {
   const { selectedTrackId, onTrackSelect } = props;
 
-  const [tracks, setTracks] = useState<TrackListResource[] | null>(null);
+  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null);
 
   // оболочка сброс трека
   const handleResetClick = () => {
