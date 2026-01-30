@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TrackItem } from "../TrackItem/TrackItem";
 import { BASE_URL } from "../../App";
 
-type TrackListItemResource = {
+type TrackListResource = {
   id: string;
 };
 
@@ -10,7 +10,7 @@ type TrackListItemResource = {
 export function TrackList(props) {
   const { selectedTrackId, onTrackSelect } = props;
 
-  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null);
+  const [tracks, setTracks] = useState<TrackListResource[] | null>(null);
 
   // оболочка сброс трека
   const handleResetClick = () => {
