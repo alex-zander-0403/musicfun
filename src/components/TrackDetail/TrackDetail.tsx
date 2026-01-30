@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BASE_URL } from "../../App";
 
 export function TrackDetail(props) {
   //
-  const { selectedTrack, setSelectedTrack, selectedTrackId } = props;
+  const { selectedTrackId } = props;
+
+  const [selectedTrack, setSelectedTrack] = useState(null);
 
   // загрузка деталей по изменению selectedTrackId
   useEffect(() => {
