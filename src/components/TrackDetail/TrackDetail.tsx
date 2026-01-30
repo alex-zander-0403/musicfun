@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../App";
 
+type TrackItemResource = {
+  id: string;
+  attributes: {
+    lyrics: string | null;
+  };
+};
+
 export function TrackDetail(props) {
   //
   const { selectedTrackId } = props;
 
-  const [selectedTrack, setSelectedTrack] = useState(null);
+  const [selectedTrack, setSelectedTrack] = useState<TrackItemResource | null>(
+    null,
+  );
 
   // загрузка деталей по изменению selectedTrackId
   useEffect(() => {

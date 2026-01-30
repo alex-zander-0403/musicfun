@@ -10,7 +10,7 @@ export function App() {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
 
   // выбор трека по клику
-  const handleTrackSelect = (trackId: string | null) => {
+  const handleSelect = (trackId: string | null) => {
     setSelectedTrackId(trackId);
   };
 
@@ -23,7 +23,7 @@ export function App() {
         {/* плейлист */}
         <TrackList
           selectedTrackId={selectedTrackId}
-          onTrackSelect={handleTrackSelect}
+          onTrackSelect={handleSelect}
         />
 
         {/* детали */}

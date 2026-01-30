@@ -2,14 +2,24 @@ import { useEffect, useState } from "react";
 import { TrackItem } from "../TrackItem/TrackItem";
 import { BASE_URL } from "../../App";
 
+type TrackListItemResource = {
+  id: string;
+};
+
+//
 export function TrackList(props) {
   const { selectedTrackId, onTrackSelect } = props;
 
-  const [tracks, setTracks] = useState(null);
+  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null);
 
-  // сброс трека по клику
-  const handleClickReset = () => {
-    setSelectedTrackId(null);
+  // оболочка сброс трека
+  const handleResetClick = () => {
+    onTrackSelect(null);
+  };
+
+  // оболочка выбора трека
+  const handleTrackSelect = (trackId: string) => {
+    onTrackSelect(trackId);
   };
 
   // базовая загрузка списка треков
@@ -26,7 +36,7 @@ export function TrackList(props) {
   }, []);
 
   if (tracks === null) {
-    return <div>Загрузка... (tracks === null)</div>;
+    return <div>Загрузка треков... (tracks === null)</div>;
   }
 
   if (tracks.length === 0) {
@@ -36,7 +46,7 @@ export function TrackList(props) {
   return (
     <ul>
       {/* сброс */}
-      <button onClick={handleClickReset}>Сбросить</button>
+      <button onClick={handleResetClick}>Сбросить</button>
 
       {tracks.map((track) => {
         return (
@@ -44,7 +54,7 @@ export function TrackList(props) {
             key={track.id}
             track={track}
             isSelected={track.id === selectedTrackId}
-            onSelect={onTrackSelect}
+            onSelect={handleTrackSelect}
           />
         );
       })}
