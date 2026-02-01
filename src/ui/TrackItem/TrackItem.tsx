@@ -1,16 +1,4 @@
-type TrackAttachment = {
-  url: string;
-};
-
-type TrackListItemAttributes = {
-  title: string;
-  attachments: TrackAttachment[];
-};
-
-export type TrackListItemResource = {
-  id: string;
-  attributes: TrackListItemAttributes;
-};
+import { TrackListItemResource } from "../../dal/api";
 
 type PropsType = {
   track: TrackListItemResource;

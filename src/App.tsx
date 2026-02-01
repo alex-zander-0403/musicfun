@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { TrackList } from "./components/TrackList/TrackList.js";
-import { TrackDetail } from "./components/TrackDetail/TrackDetail.js";
-// import { data } from "../mockData/mockTracks.json";
+import { TrackList } from "./ui/TrackList/TrackList.js";
+import { TrackDetail } from "./ui/TrackDetail/TrackDetail.js";
 
 export const BASE_URL = "https://musicfun.it-incubator.app/api/1.0";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { TrackItem, type TrackListItemResource } from "../TrackItem/TrackItem";
-import { BASE_URL } from "../../App";
+import { TrackItem } from "../TrackItem/TrackItem";
+import { getAllTracks, TrackListItemResource } from "../../dal/api";
 
 type PropsType = {
   selectedTrackId: string | null;
@@ -25,15 +25,9 @@ export function TrackList(props: PropsType) {
 
   // базовая загрузка списка треков
   useEffect(() => {
-    fetch(`${BASE_URL}/playlists/tracks`, {
-      headers: {
-        "api-key": "16edba78-eeed-43ce-bc33-f0538130b694",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTracks(data.data);
-      });
+    getAllTracks().then((json) => {
+      setTracks(json.data);
+    });
   }, []);
 
   if (tracks === null) {

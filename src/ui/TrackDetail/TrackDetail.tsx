@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../App";
-
-type TrackDetailsResource = {
-  id: string;
-  attributes: {
-    title: string;
-    lyrics: string | null;
-  };
-};
+import { getTrack, TrackDetailsResource } from "../../dal/api";
 
 type PropsType = {
   selectedTrackId: string | null;
@@ -22,27 +14,18 @@ export function TrackDetail(props: PropsType) {
 
   // загрузка деталей по изменению selectedTrackId
   useEffect(() => {
-    if (!selectedTrackId) return;
+    if (!selectedTrackId) {
+      setSelectedTrack(null);
+      return;
+    }
 
-    fetch(`${BASE_URL}/playlists/tracks/${selectedTrackId}`, {
-      headers: {
-        "api-key": "16edba78-eeed-43ce-bc33-f0538130b694",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setSelectedTrack(data.data));
+    getTrack(selectedTrackId).then((json) => setSelectedTrack(json.data));
   }, [selectedTrackId]);
 
   //
   return (
     <div>
       <h3>Details</h3>
-
-      {/* {!selectedTrackId && (
-        <div>
-          <p>Трек не выбран</p>
-        </div>
-      )} */}
 
       {!selectedTrackId && !selectedTrack && (
         <div>
