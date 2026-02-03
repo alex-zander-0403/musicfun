@@ -1,56 +1,44 @@
-import { useEffect, useState } from "react";
-import { getTrack, TrackDetailsResource } from "../../dal/api";
+import { useTrackDetail } from "../../bll/useTrackDetail";
 
 type PropsType = {
   selectedTrackId: string | null;
 };
 
+//
 export function TrackDetail(props: PropsType) {
-  //
   const { selectedTrackId } = props;
 
-  const [selectedTrack, setSelectedTrack] =
-    useState<TrackDetailsResource | null>(null);
-
-  // загрузка деталей по изменению selectedTrackId
-  useEffect(() => {
-    if (!selectedTrackId) {
-      setSelectedTrack(null);
-      return;
-    }
-
-    getTrack(selectedTrackId).then((json) => setSelectedTrack(json.data));
-  }, [selectedTrackId]);
+  const { trackDetails } = useTrackDetail(selectedTrackId);
 
   //
   return (
     <div>
       <h3>Details</h3>
 
-      {!selectedTrackId && !selectedTrack && (
+      {!selectedTrackId && !trackDetails && (
         <div>
           <p>Трек не выбран</p>
         </div>
       )}
 
-      {selectedTrackId && !selectedTrack && (
+      {selectedTrackId && !trackDetails && (
         <div>
           <p>Загрузка 1...</p>
         </div>
       )}
 
       {selectedTrackId &&
-        selectedTrack &&
-        selectedTrackId !== selectedTrack.id && (
+        trackDetails &&
+        selectedTrackId !== trackDetails.id && (
           <div>
             <p>Загрузка 2... смена трека</p>
           </div>
         )}
 
-      {selectedTrack && (
+      {trackDetails && (
         <div>
-          <h3>{selectedTrack.attributes.title}</h3>
-          <p>{selectedTrack.attributes.lyrics ?? "Нет текста"}</p>
+          <h3>{trackDetails.attributes.title}</h3>
+          <p>{trackDetails.attributes.lyrics ?? "Нет текста"}</p>
         </div>
       )}
     </div>

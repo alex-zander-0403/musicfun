@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useTracks } from "../../bll/useTracks";
 import { TrackItem } from "../TrackItem/TrackItem";
-import { getAllTracks, TrackListItemResource } from "../../dal/api";
 
 type PropsType = {
   selectedTrackId: string | null;
@@ -11,24 +10,17 @@ type PropsType = {
 export function TrackList(props: PropsType) {
   const { selectedTrackId, onTrackSelect } = props;
 
-  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null);
+  const { tracks } = useTracks();
 
   // оболочка сброс трека
   const handleResetClick = () => {
-    onTrackSelect(null);
+    onTrackSelect?.(null);
   };
 
   // оболочка выбора трека
   const handleTrackSelect = (trackId: string) => {
-    onTrackSelect(trackId);
+    onTrackSelect?.(trackId);
   };
-
-  // базовая загрузка списка треков
-  useEffect(() => {
-    getAllTracks().then((json) => {
-      setTracks(json.data);
-    });
-  }, []);
 
   if (tracks === null) {
     return <div>Загрузка треков... (tracks === null)</div>;
