@@ -1,5 +1,6 @@
 import { TrackListItemResource } from "../../dal/api.ts";
 import styles from "./TrackItem.module.css";
+import clsx from "clsx";
 
 type PropsType = {
   track: TrackListItemResource;
@@ -14,11 +15,16 @@ export function TrackItem(props: PropsType) {
     onSelect(trackId);
   };
 
+  const className = clsx({
+    [styles.trackItem]: true,
+    [styles.selected]: isSelected,
+  });
+
   return (
     <li
       key={track.id}
-      className={styles.trackItem}
-      style={{ border: isSelected ? "2px solid tomato" : "" }}
+      className={className}
+      // style={{ border: isSelected ? "2px solid tomato" : "" }}
     >
       <div onClick={() => handleClick(track.id)}>{track.attributes.title}</div>
 

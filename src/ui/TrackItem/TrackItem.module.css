@@ -4,3 +4,10 @@
   border: 1px solid #3a3a3a;
   border-radius: 5px;
 }
+
+.trackItem.selected {
+  padding: 10px;
+
+  border: 2px solid tomato;
+  border-radius: 5px;
+}
