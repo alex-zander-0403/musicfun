@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getTrack, TrackDetailsResource } from "../dal/api";
 
 //
-export function useTrackDetail(trackId: string) {
+export function useTrackDetail(trackId: string | null) {
   const [trackDetails, setTrackDetails] = useState<TrackDetailsResource | null>(
     null,
   );

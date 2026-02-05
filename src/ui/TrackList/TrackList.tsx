@@ -1,5 +1,6 @@
 import { useTracks } from "../../bll/useTracks";
 import { TrackItem } from "../TrackItem/TrackItem";
+import styles from "./TrackList.module.css";
 
 type PropsType = {
   selectedTrackId: string | null;
@@ -31,7 +32,7 @@ export function TrackList(props: PropsType) {
   }
 
   return (
-    <ul>
+    <ul className={styles.trackList}>
       {/* сброс */}
       <button onClick={handleResetClick}>Сбросить</button>
 

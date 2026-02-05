@@ -1,4 +1,5 @@
-import { TrackListItemResource } from "../../dal/api";
+import { TrackListItemResource } from "../../dal/api.ts";
+import styles from "./TrackItem.module.css";
 
 type PropsType = {
   track: TrackListItemResource;
@@ -16,10 +17,8 @@ export function TrackItem(props: PropsType) {
   return (
     <li
       key={track.id}
-      style={{
-        border: isSelected ? "1px solid red" : "",
-        padding: isSelected ? "10px" : "",
-      }}
+      className={styles.trackItem}
+      style={{ border: isSelected ? "2px solid tomato" : "" }}
     >
       <div onClick={() => handleClick(track.id)}>{track.attributes.title}</div>
 
